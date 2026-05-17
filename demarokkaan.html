@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Supermarkt Dé Marokkaan – Amsterdam</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green:#1B6B35; --green2:#228B44; --green3:#E8F5EC;
+  --red:#C8102E; --red2:#E8172F; --red-soft:#FFF0F2;
+  --gold:#D4A017; --gold-soft:#FFF8E7;
+  --dark:#1A1A1A; --gray:#6B7280; --gray-soft:#F3F4F6;
+  --white:#FFFFFF; --border:#E5E7EB;
+}
+html { scroll-behavior: smooth; }
+body { font-family:'Nunito',sans-serif; background:var(--white); color:var(--dark); font-size:15px; line-height:1.5; }
+a { text-decoration:none; color:inherit; }
+
+.topbar { background:var(--green); color:white; text-align:center; padding:0.5rem 1rem; font-size:0.78rem; font-weight:600; }
+.topbar span { color:#90EE90; margin:0 0.4rem; }
+
+nav { position:sticky; top:0; z-index:100; background:var(--white); border-bottom:2px solid var(--border); padding:0.9rem 1.2rem; display:flex; align-items:center; justify-content:space-between; box-shadow:0 2px 8px rgba(0,0,0,0.07); }
+.nav-logo { display:flex; align-items:center; gap:0.6rem; }
+.logo-icon { width:40px; height:40px; background:var(--green); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
+.logo-text .top { font-size:0.6rem; font-weight:700; color:var(--gray); text-transform:uppercase; letter-spacing:1px; }
+.logo-text .main { font-size:1rem; font-weight:900; color:var(--green); }
+.logo-text .main span { color:var(--red); }
+.nav-call { display:flex; align-items:center; gap:0.4rem; background:var(--red); color:white; padding:0.55rem 1rem; border-radius:8px; font-size:0.82rem; font-weight:700; }
+
+.hero { background:linear-gradient(160deg,var(--green) 0%,#0D4A22 100%); color:white; padding:2.5rem 1.2rem 3rem; position:relative; overflow:hidden; }
+.hero::before { content:'🛒'; position:absolute; font-size:12rem; right:-2rem; bottom:-2rem; opacity:0.06; line-height:1; }
+.hero-flag { display:flex; align-items:center; gap:0.5rem; margin-bottom:1.2rem; }
+.flag-bar { height:4px; border-radius:2px; }
+.fb-red { width:28px; background:var(--red); }
+.fb-green { width:18px; background:#90EE90; }
+.hero-badge { display:inline-flex; align-items:center; gap:0.4rem; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); padding:0.35rem 0.9rem; border-radius:50px; font-size:0.75rem; font-weight:700; margin-bottom:1rem; }
+.dot-live { width:7px; height:7px; background:#90EE90; border-radius:50%; animation:blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero h1 { font-family:'Cairo',sans-serif; font-size:2.2rem; font-weight:900; line-height:1.1; margin-bottom:0.8rem; }
+.hero h1 span { color:#90EE90; }
+.hero-desc { font-size:0.92rem; color:rgba(255,255,255,0.8); margin-bottom:1.8rem; max-width:320px; line-height:1.6; }
+.hero-btns { display:flex; gap:0.8rem; flex-wrap:wrap; }
+.btn-white { display:inline-flex; align-items:center; gap:0.5rem; background:white; color:var(--green); padding:0.8rem 1.4rem; border-radius:10px; font-size:0.9rem; font-weight:800; flex:1; justify-content:center; min-width:130px; box-shadow:0 4px 15px rgba(0,0,0,0.15); }
+.btn-outline-white { display:inline-flex; align-items:center; gap:0.5rem; background:transparent; color:white; padding:0.8rem 1.4rem; border-radius:10px; font-size:0.9rem; font-weight:700; border:2px solid rgba(255,255,255,0.4); flex:1; justify-content:center; min-width:130px; }
+
+.stats { display:grid; grid-template-columns:repeat(3,1fr); background:white; border-bottom:2px solid var(--border); }
+.stat { padding:1.2rem 0.5rem; text-align:center; border-right:1px solid var(--border); }
+.stat:last-child { border-right:none; }
+.stat-num { font-family:'Cairo',sans-serif; font-size:1.5rem; font-weight:900; color:var(--green); display:block; line-height:1; }
+.stat-label { font-size:0.68rem; color:var(--gray); font-weight:600; margin-top:0.2rem; text-transform:uppercase; letter-spacing:0.5px; }
+
+.marquee-wrap { background:var(--green); overflow:hidden; padding:0.7rem 0; }
+.marquee-inner { display:flex; gap:2rem; animation:slide 18s linear infinite; width:max-content; }
+.marquee-item { display:flex; align-items:center; gap:0.5rem; color:rgba(255,255,255,0.85); font-size:0.78rem; font-weight:700; white-space:nowrap; }
+.m-sep { color:rgba(255,255,255,0.3); font-size:0.4rem; }
+@keyframes slide { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+.section { padding:2rem 1.2rem; }
+.section-alt { background:var(--gray-soft); }
+.section-head { margin-bottom:1.5rem; }
+.section-tag { display:inline-block; font-size:0.7rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:var(--green); background:var(--green3); padding:0.25rem 0.7rem; border-radius:4px; margin-bottom:0.6rem; }
+.section-tag.red { color:var(--red); background:var(--red-soft); }
+.section-title { font-family:'Cairo',sans-serif; font-size:1.5rem; font-weight:900; color:var(--dark); line-height:1.2; }
+.section-sub { font-size:0.85rem; color:var(--gray); margin-top:0.4rem; line-height:1.6; }
+
+.deals-banner { background:linear-gradient(135deg,var(--red) 0%,#8B0000 100%); border-radius:14px; padding:1.5rem; color:white; margin-bottom:1.2rem; position:relative; overflow:hidden; }
+.deals-banner::before { content:'🐑'; position:absolute; font-size:6rem; right:-1rem; bottom:-1rem; opacity:0.12; }
+.deals-banner-tag { font-size:0.68rem; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:0.5rem; }
+.deals-banner-title { font-family:'Cairo',sans-serif; font-size:1.6rem; font-weight:900; line-height:1.1; margin-bottom:0.8rem; }
+.deals-banner-price { font-family:'Cairo',sans-serif; font-size:2.8rem; font-weight:900; color:#FFD700; line-height:1; }
+.deals-banner-includes { margin-top:1rem; display:flex; flex-direction:column; gap:0.3rem; }
+.deal-check { font-size:0.8rem; color:rgba(255,255,255,0.85); display:flex; align-items:center; gap:0.4rem; }
+.deal-check::before { content:'✅'; font-size:0.7rem; }
+
+.offers-list { display:flex; flex-direction:column; gap:0.8rem; }
+.offer-row { background:white; border:1.5px solid var(--border); border-radius:12px; padding:1rem; display:flex; align-items:center; gap:1rem; }
+.offer-emoji-box { width:54px; height:54px; background:var(--gray-soft); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.8rem; flex-shrink:0; }
+.offer-info { flex:1; }
+.offer-name { font-size:0.9rem; font-weight:800; color:var(--dark); margin-bottom:0.15rem; }
+.offer-desc { font-size:0.72rem; color:var(--gray); }
+.offer-price-col { text-align:right; flex-shrink:0; }
+.offer-old { font-size:0.7rem; color:#9CA3AF; text-decoration:line-through; display:block; }
+.offer-price { font-family:'Cairo',sans-serif; font-size:1.3rem; font-weight:900; color:var(--red); }
+
+.product-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
+.product-card { background:white; border:1.5px solid var(--border); border-radius:12px; overflow:hidden; }
+.product-top { background:var(--gray-soft); padding:1.2rem 0.8rem; text-align:center; font-size:2.5rem; position:relative; }
+.product-badge { position:absolute; top:0.5rem; right:0.5rem; background:var(--red); color:white; font-size:0.55rem; font-weight:800; padding:0.2rem 0.45rem; border-radius:4px; text-transform:uppercase; }
+.product-badge.green { background:var(--green); }
+.product-bottom { padding:0.8rem; }
+.product-name { font-size:0.82rem; font-weight:800; color:var(--dark); margin-bottom:0.15rem; line-height:1.3; }
+.product-sub { font-size:0.68rem; color:var(--gray); margin-bottom:0.5rem; }
+.product-price-row { display:flex; align-items:baseline; gap:0.4rem; }
+.product-old { font-size:0.72rem; color:#9CA3AF; text-decoration:line-through; }
+.product-price { font-family:'Cairo',sans-serif; font-size:1.1rem; font-weight:900; color:var(--green); }
+
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; }
+.why-card { background:white; border:1.5px solid var(--border); border-radius:12px; padding:1.2rem 1rem; text-align:center; }
+.why-icon { font-size:2rem; display:block; margin-bottom:0.6rem; }
+.why-title { font-size:0.82rem; font-weight:800; color:var(--dark); margin-bottom:0.3rem; }
+.why-text { font-size:0.72rem; color:var(--gray); line-height:1.5; }
+
+.rating-card { background:linear-gradient(135deg,var(--green) 0%,#0D4A22 100%); border-radius:16px; padding:2rem 1.5rem; text-align:center; color:white; margin-top:1rem; }
+.rating-num { font-family:'Cairo',sans-serif; font-size:4rem; font-weight:900; line-height:1; color:#FFD700; }
+.rating-stars { font-size:1.4rem; margin:0.4rem 0; letter-spacing:3px; }
+.rating-count { font-size:0.85rem; color:rgba(255,255,255,0.75); }
+.rating-badges { display:flex; justify-content:center; gap:0.6rem; margin-top:1.2rem; flex-wrap:wrap; }
+.rbadge { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); padding:0.35rem 0.8rem; border-radius:50px; font-size:0.72rem; font-weight:700; }
+
+.location-card { background:white; border:1.5px solid var(--border); border-radius:14px; overflow:hidden; }
+.map-area { background:linear-gradient(135deg,var(--green3) 0%,#d4edda 100%); padding:2rem; text-align:center; position:relative; min-height:160px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0.5rem; }
+.map-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(27,107,53,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(27,107,53,0.08) 1px,transparent 1px); background-size:30px 30px; }
+.map-pin { font-size:3rem; position:relative; z-index:2; animation:bounce 2s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.map-label { font-family:'Cairo',sans-serif; font-size:1rem; font-weight:900; color:var(--green); position:relative; z-index:2; }
+.map-sub { font-size:0.75rem; color:var(--gray); position:relative; z-index:2; }
+.location-info { padding:1.2rem; }
+.info-row { display:flex; align-items:flex-start; gap:0.8rem; padding:0.8rem 0; border-bottom:1px solid var(--border); }
+.info-row:last-child { border-bottom:none; }
+.info-icon { width:36px; height:36px; background:var(--green3); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.info-label { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--gray); margin-bottom:0.15rem; }
+.info-value { font-size:0.88rem; font-weight:700; color:var(--dark); line-height:1.5; }
+
+.hours-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:0.4rem; margin-top:1rem; }
+.hour-box { background:var(--gray-soft); border:1.5px solid var(--border); border-radius:8px; padding:0.6rem 0.2rem; text-align:center; }
+.hour-box.today { background:var(--green3); border-color:var(--green); }
+.hour-day-name { font-size:0.58rem; font-weight:800; text-transform:uppercase; color:var(--gray); display:block; margin-bottom:0.25rem; }
+.hour-box.today .hour-day-name { color:var(--green); }
+.hour-time { font-size:0.58rem; font-weight:700; color:var(--dark); }
+
+.coffee-section { background:linear-gradient(135deg,#2C1810 0%,#1a0a00 100%); padding:2.5rem 1.2rem; text-align:center; color:white; }
+.coffee-badge { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(212,160,23,0.2); border:1px solid rgba(212,160,23,0.4); padding:0.4rem 1rem; border-radius:50px; font-size:0.72rem; font-weight:700; color:#FFD700; margin-bottom:1rem; letter-spacing:1px; text-transform:uppercase; }
+.coffee-title { font-family:'Cairo',sans-serif; font-size:1.8rem; font-weight:900; margin-bottom:0.5rem; }
+.coffee-title span { color:#D4A017; }
+.coffee-desc { font-size:0.85rem; color:rgba(255,255,255,0.6); line-height:1.7; max-width:280px; margin:0 auto; }
+
+.cta-strip { background:var(--red); padding:1.5rem 1.2rem; text-align:center; }
+.cta-strip h3 { font-family:'Cairo',sans-serif; font-size:1.3rem; font-weight:900; color:white; margin-bottom:1rem; }
+
+footer { background:var(--dark); color:white; padding:2rem 1.2rem 6rem; }
+.footer-logo { font-family:'Cairo',sans-serif; font-size:1.3rem; font-weight:900; margin-bottom:0.5rem; }
+.footer-logo span { color:#90EE90; }
+.footer-desc { font-size:0.8rem; color:rgba(255,255,255,0.45); line-height:1.7; margin-bottom:1.5rem; }
+.footer-links { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.5rem; }
+.footer-links a { font-size:0.82rem; color:rgba(255,255,255,0.6); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:1rem; font-size:0.72rem; color:rgba(255,255,255,0.25); }
+.footer-bottom span { color:#90EE90; }
+
+.float-call { position:fixed; bottom:1.2rem; left:50%; transform:translateX(-50%); z-index:200; display:flex; gap:0.7rem; width:calc(100% - 2.4rem); max-width:420px; }
+.float-btn { flex:1; display:flex; align-items:center; justify-content:center; gap:0.5rem; padding:0.95rem; border-radius:12px; font-size:0.9rem; font-weight:800; box-shadow:0 8px 25px rgba(0,0,0,0.25); }
+.float-call-btn { background:var(--red); color:white; }
+.float-wa-btn { background:#25D366; color:white; }
+
+@media(min-width:640px){
+  .hero{padding:3rem 2rem 4rem;} .hero h1{font-size:3rem;}
+  .section{padding:3rem 2rem;}
+  .product-grid{grid-template-columns:repeat(3,1fr);}
+  .why-grid{grid-template-columns:repeat(4,1fr);}
+}
+@media(min-width:900px){
+  .product-grid{grid-template-columns:repeat(4,1fr);}
+  .section{padding:4rem 3rem;}
+  nav{padding:1rem 3rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">🟢 Nu Open · Sluit 19:00 <span>|</span> 📍 Hoofdweg 642-644, Amsterdam <span>|</span> ✅ 100% Halal</div>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-icon">🛒</div>
+    <div class="logo-text">
+      <div class="top">Supermarkt</div>
+      <div class="main">Dé <span>Marokkaan</span></div>
+    </div>
+  </div>
+  <a href="tel:+31204880476" class="nav-call">📞 Bel ons</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-flag">
+    <div class="flag-bar fb-red"></div>
+    <div class="flag-bar fb-green"></div>
+    <div class="flag-bar fb-red"></div>
+  </div>
+  <div class="hero-badge"><span class="dot-live"></span>Nu Open · Bos en Lommer</div>
+  <h1>Jouw Marokkaanse<br><span>Supermarkt</span><br>in Amsterdam</h1>
+  <p class="hero-desc">Vers halal vlees, Marokkaanse producten en dagverse groenten — allemaal bij u in de buurt.</p>
+  <div class="hero-btns">
+    <a href="#aanbiedingen" class="btn-white">🏷️ Aanbiedingen</a>
+    <a href="#locatie" class="btn-outline-white">📍 Vind ons</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat"><span class="stat-num">4.2⭐</span><div class="stat-label">Google</div></div>
+  <div class="stat"><span class="stat-num">149+</span><div class="stat-label">Reviews</div></div>
+  <div class="stat"><span class="stat-num">100%</span><div class="stat-label">Halal</div></div>
+</div>
+
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">🥩 Halal Vlees <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🍗 Verse Kip <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🧅 Verse Groenten <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🫒 Marokkaanse Olijven <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🥚 Verse Eieren <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🧆 Dadels 1kg · €3,99 <span class="m-sep">◆</span></span>
+    <span class="marquee-item">☕ Barista Koffie Binnenkort <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🥩 Halal Vlees <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🍗 Verse Kip <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🧅 Verse Groenten <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🫒 Marokkaanse Olijven <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🥚 Verse Eieren <span class="m-sep">◆</span></span>
+    <span class="marquee-item">🧆 Dadels 1kg · €3,99 <span class="m-sep">◆</span></span>
+    <span class="marquee-item">☕ Barista Koffie Binnenkort <span class="m-sep">◆</span></span>
+  </div>
+</div>
+
+<section class="section" id="aanbiedingen">
+  <div class="section-head">
+    <div class="section-tag red">🏷️ Super Deals · 18–27 April 2026</div>
+    <h2 class="section-title">Aanbiedingen van de Week</h2>
+    <p class="section-sub">Verse halal producten voor de beste prijs</p>
+  </div>
+  <div class="deals-banner">
+    <div class="deals-banner-tag">🐑 Offerfeest 2026 · 1e Dag</div>
+    <div class="deals-banner-title">HEEL LAM · Nederland 🇳🇱</div>
+    <div class="deals-banner-price">€495,-</div>
+    <div class="deals-banner-includes">
+      <div class="deal-check">Slacht na gebed</div>
+      <div class="deal-check">100% Halal gecertificeerd</div>
+      <div class="deal-check">Leeftijd ± 6 maanden · Gewicht ± 25kg</div>
+      <div class="deal-check">Bestellen via telefoon of langskomen</div>
+    </div>
+  </div>
+  <div class="offers-list">
+    <div class="offer-row">
+      <div class="offer-emoji-box">🍗</div>
+      <div class="offer-info"><div class="offer-name">Kipfilet</div><div class="offer-desc">100% Halal · Per KG</div></div>
+      <div class="offer-price-col"><span class="offer-old">€8,79</span><span class="offer-price">€5,49</span></div>
+    </div>
+    <div class="offer-row">
+      <div class="offer-emoji-box">🥩</div>
+      <div class="offer-info"><div class="offer-name">Kip Shoarma</div><div class="offer-desc">Gemarineerd · Per KG</div></div>
+      <div class="offer-price-col"><span class="offer-old">€6,99</span><span class="offer-price">€4,99</span></div>
+    </div>
+    <div class="offer-row">
+      <div class="offer-emoji-box">🍗</div>
+      <div class="offer-info"><div class="offer-name">Kip Drumsticks</div><div class="offer-desc">Vers Halal · Per KG</div></div>
+      <div class="offer-price-col"><span class="offer-old">€3,99</span><span class="offer-price">€2,79</span></div>
+    </div>
+    <div class="offer-row">
+      <div class="offer-emoji-box">🍗</div>
+      <div class="offer-info"><div class="offer-name">Kip Dijfilet</div><div class="offer-desc">Halal · Per KG</div></div>
+      <div class="offer-price-col"><span class="offer-old">€7,49</span><span class="offer-price">€4,79</span></div>
+    </div>
+    <div class="offer-row">
+      <div class="offer-emoji-box">🍗</div>
+      <div class="offer-info"><div class="offer-name">Kip Borrel</div><div class="offer-desc">Halal · Per KG</div></div>
+      <div class="offer-price-col"><span class="offer-old">€3,99</span><span class="offer-price">€2,79</span></div>
+    </div>
+    <div class="offer-row">
+      <div class="offer-emoji-box">🐄</div>
+      <div class="offer-info"><div class="offer-name">Rosé Kalfsvlees met bot</div><div class="offer-desc">Premium Halal · Per KG</div></div>
+      <div class="offer-price-col"><span class="offer-old">€13,49</span><span class="offer-price">€9,99</span></div>
+    </div>
+    <div class="offer-row">
+      <div class="offer-emoji-box">🐄</div>
+      <div class="offer-info"><div class="offer-name">Kalf/Rund Gehakt</div><div class="offer-desc">Halal · Per KG</div></div>
+      <div class="offer-price-col"><span class="offer-old">€13,79</span><span class="offer-price">€10,79</span></div>
+    </div>
+    <div class="offer-row">
+      <div class="offer-emoji-box">🥚</div>
+      <div class="offer-info"><div class="offer-name">Eieren Maat M · 30 stuks</div><div class="offer-desc">Verse eieren</div></div>
+      <div class="offer-price-col"><span class="offer-price">€6,49</span></div>
+    </div>
+    <div class="offer-row">
+      <div class="offer-emoji-box">🧆</div>
+      <div class="offer-info"><div class="offer-name">Dadels 1kg</div><div class="offer-desc">Authentiek Marokkaans</div></div>
+      <div class="offer-price-col"><span class="offer-price">€3,99</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt" id="producten">
+  <div class="section-head">
+    <div class="section-tag">🛒 Ons Assortiment</div>
+    <h2 class="section-title">Verse Producten Elke Dag</h2>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-top">🍗<div class="product-badge">Halal</div></div>
+      <div class="product-bottom"><div class="product-name">Kip Bout</div><div class="product-sub">Halal · Per KG</div><div class="product-price-row"><span class="product-price">€2,49/kg</span></div></div>
+    </div>
+    <div class="product-card">
+      <div class="product-top">🍟<div class="product-badge green">Nieuw</div></div>
+      <div class="product-bottom"><div class="product-name">Sultan Tenders</div><div class="product-sub">Spicy / Normaal</div><div class="product-price-row"><span class="product-price">€6,79</span></div></div>
+    </div>
+    <div class="product-card">
+      <div class="product-top">🍤</div>
+      <div class="product-bottom"><div class="product-name">Garnaal 1kg</div><div class="product-sub">Vers · Per stuk</div><div class="product-price-row"><span class="product-price">€9,99</span></div></div>
+    </div>
+    <div class="product-card">
+      <div class="product-top">🫒</div>
+      <div class="product-bottom"><div class="product-name">Azite Al Baldia</div><div class="product-sub">Olijfolie · 1 Liter</div><div class="product-price-row"><span class="product-price">€3,49</span></div></div>
+    </div>
+    <div class="product-card">
+      <div class="product-top">🍵</div>
+      <div class="product-bottom"><div class="product-name">Thee 411 · 250g</div><div class="product-sub">Marokkaanse thee</div><div class="product-price-row"><span class="product-price">€3,79</span></div></div>
+    </div>
+    <div class="product-card">
+      <div class="product-top">🥛</div>
+      <div class="product-bottom"><div class="product-name">Ozturk Yoghurt</div><div class="product-sub">3.5% vet · Per stuk</div><div class="product-price-row"><span class="product-price">€1,19</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="waarom">
+  <div class="section-head">
+    <div class="section-tag">💚 Waarom Wij</div>
+    <h2 class="section-title">De Beste Keuze in Amsterdam</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-card"><span class="why-icon">✅</span><div class="why-title">100% Halal</div><p class="why-text">Gecertificeerd halal geslacht vlees</p></div>
+    <div class="why-card"><span class="why-icon">🚚</span><div class="why-title">Dagvers</div><p class="why-text">Elke dag verse producten geleverd</p></div>
+    <div class="why-card"><span class="why-icon">💰</span><div class="why-title">Beste Prijs</div><p class="why-text">Scherpe prijzen voor topkwaliteit</p></div>
+    <div class="why-card"><span class="why-icon">🤝</span><div class="why-title">Familie</div><p class="why-text">Persoonlijke service in uw taal</p></div>
+  </div>
+  <div class="rating-card">
+    <div class="rating-num">4.2</div>
+    <div class="rating-stars">★★★★☆</div>
+    <div class="rating-count">Gebaseerd op 149 Google reviews</div>
+    <div class="rating-badges">
+      <span class="rbadge">🇲🇦 Marokkaans</span>
+      <span class="rbadge">🇳🇱 Amsterdam</span>
+      <span class="rbadge">✅ Halal</span>
+    </div>
+  </div>
+</section>
+
+<section class="coffee-section">
+  <div class="coffee-badge">☕ Binnenkort</div>
+  <div class="coffee-title">BARISTA<br><span>KOFFIE CORNER</span></div>
+  <p class="coffee-desc">Premium koffie met liefde gezet · Verse ingrediënten · Jouw nieuwe favoriete spot in Bos en Lommer</p>
+</section>
+
+<section class="section section-alt" id="locatie">
+  <div class="section-head">
+    <div class="section-tag">📍 Bezoek Ons</div>
+    <h2 class="section-title">Vind Ons in Amsterdam</h2>
+  </div>
+  <div class="location-card">
+    <div class="map-area">
+      <div class="map-grid"></div>
+      <span class="map-pin">📍</span>
+      <div class="map-label">Bos en Lommer · Amsterdam</div>
+      <div class="map-sub">Hoofdweg 642-644</div>
+    </div>
+    <div class="location-info">
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div><div class="info-label">Adres</div><div class="info-value">Hoofdweg 642-644<br>1055 AB Amsterdam</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📞</div>
+        <div><div class="info-label">Telefoon</div><div class="info-value">020 488 0476</div></div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🕐</div>
+        <div><div class="info-label">Openingstijden</div><div class="info-value">Ma – Zo: 09:00 – 19:00</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hours-grid">
+    <div class="hour-box"><span class="hour-day-name">Ma</span><span class="hour-time">9-19</span></div>
+    <div class="hour-box"><span class="hour-day-name">Di</span><span class="hour-time">9-19</span></div>
+    <div class="hour-box"><span class="hour-day-name">Wo</span><span class="hour-time">9-19</span></div>
+    <div class="hour-box"><span class="hour-day-name">Do</span><span class="hour-time">9-19</span></div>
+    <div class="hour-box today"><span class="hour-day-name">Vr</span><span class="hour-time">9-19</span></div>
+    <div class="hour-box"><span class="hour-day-name">Za</span><span class="hour-time">9-19</span></div>
+    <div class="hour-box"><span class="hour-day-name">Zo</span><span class="hour-time">9-19</span></div>
+  </div>
+  <a href="https://maps.google.com/?q=Hoofdweg+642,+Amsterdam" target="_blank"
+     style="display:flex;align-items:center;justify-content:center;gap:0.5rem;margin-top:1rem;background:var(--green);color:white;padding:1rem;border-radius:12px;font-weight:800;font-size:0.9rem;">
+    🗺️ Open in Google Maps
+  </a>
+</section>
+
+<div class="cta-strip">
+  <h3>Bestellen of vragen?<br>Bel ons direct!</h3>
+  <a href="tel:+31204880476" style="display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:white;color:var(--red);padding:0.9rem 2rem;border-radius:10px;font-size:0.95rem;font-weight:800;box-shadow:0 4px 15px rgba(0,0,0,0.15);">📞 020 488 0476</a>
+</div>
+
+<footer>
+  <div class="footer-logo">Dé <span>Marokkaan</span></div>
+  <p class="footer-desc">Uw vertrouwde Marokkaanse supermarkt in Amsterdam · Vers halal vlees · Dagverse producten · Bos en Lommer</p>
+  <div class="footer-links">
+    <a href="tel:+31204880476">📞 020 488 0476</a>
+    <a href="#">📍 Hoofdweg 642-644, 1055 AB Amsterdam</a>
+    <a href="#">🕐 Ma–Zo: 09:00 – 19:00</a>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Supermarkt Dé Marokkaan · Amsterdam</div>
+    <div style="margin-top:0.3rem;">Website door <span>Norex Media</span> 🇲🇦</div>
+  </div>
+</footer>
+
+<div class="float-call">
+  <a href="tel:+31204880476" class="float-btn float-call-btn">📞 Bellen</a>
+  <a href="https://wa.me/31204880476" class="float-btn float-wa-btn">💬 WhatsApp</a>
+</div>
+
+</body>
+</html>
